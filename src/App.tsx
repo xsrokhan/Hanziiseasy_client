@@ -10,7 +10,7 @@ function App() {
   const [chars, setChars] = useState([])
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/get_chars").then(res => setChars(res.data))
+    Axios.get("https://hanziiseasyserver-production.up.railway.app/").then(res => setChars(res.data))
   }, [])
 
   return (

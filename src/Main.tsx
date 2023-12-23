@@ -71,7 +71,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
       clearTimeout(timeoutId)
       setIsLoading(true)
       timeoutId = setTimeout(() => {
-        Axios.get(`http://localhost:5000/search_dict/${currentROF[charNumber - 1]["simplified"]}`).then(res => {setWords(reverseWords ? reverseArray(res.data) : randomizeWords ? randomizeArray(res.data) : res.data); setHideTranslations(createWordListModalTrState(res.data.length)); setIsLoading(false)})
+        Axios.get(`https://hanziiseasyserver-production.up.railway.app/search_dict/${currentROF[charNumber - 1]["simplified"]}`).then(res => {setWords(reverseWords ? reverseArray(res.data) : randomizeWords ? randomizeArray(res.data) : res.data); setHideTranslations(createWordListModalTrState(res.data.length)); setIsLoading(false)})
         reset("all words")
       }, 500);
       return () => clearTimeout(timeoutId);
@@ -233,7 +233,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
       }
     }
     let converted: any = arg.split(" ")
-    console.log("f", converted)
+    //console.log("converted", converted)
     converted.forEach((word: any, i: number) => {
       if (+word[word.length - 1] && word.length !== 2) { // process only pinyin and only non-single chars
         if (word[word.length - 2] === ":" || word[word.length - 3] === ":") { // if contains ü
@@ -250,7 +250,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
           let replaceMiddle = ((word.slice(1, 3) === "ao" || word.slice(1, 3) === "ai" || word.slice(1, 3) === "ei" || word.slice(1, 3) === "ou" || !endsWithAVowel) && word.length === 4) || (word.length === 5 && !penultimateIsAVowel) || word.length === 3
           let idxToReplace = replaceMiddle ? 1 : 2
           idxToReplace = ((word.length === 6 && penultimateIsAVowel) || word.length === 7) ? 3 : (word.length === 6 && !penultimateIsAVowel) ? 2 : idxToReplace // e.g. zhong4, zhuang4
-          idxToReplace = word.slice(word.length - 3, word.length - 1) == "ui" ? (word.length === 4 ? 2 : 3) : idxToReplace // e.g. gui1, zhui1
+          idxToReplace = word.slice(word.length - 3, word.length - 1) === "ui" ? (word.length === 4 ? 2 : 3) : idxToReplace // e.g. gui1, zhui1
           idxToReplace = word.length === 5 && (word.slice(2, 4) === "uo" || word.slice(2, 4) === "ua") ? 3 : idxToReplace // e.g. zhuo2, zhua1
           regex.lastIndex = 0;
           if ((word.length === 3 && regex.test(word[0])) || (word.length === 4 && regex.test(word[0]))) idxToReplace = 0 // e.g. er4, ang4
@@ -374,8 +374,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
     const selected = (event.target as HTMLElement).classList.value
     setHideTranslations({...hideTranslations, [selected]: !hideTranslations[selected as keyof typeof hideTranslations]})
   }
-  //console.log("char", currentROF[charNumber - 1]["pinyin"])
-  //console.log("word", words.slice(increment, 5 + increment)[wordNumber - 1]["pinyin"])
+  
   return (
     <div className="main">
       {currentROF.length !== 0 &&
