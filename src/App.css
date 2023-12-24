@@ -31,7 +31,7 @@
   width: 70%;
   min-width: 355px;
   height: 80%;
-  min-height: 530px;
+  min-height: 500px;
   border-radius: 10px;
 }
 
@@ -40,8 +40,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 4vh;
   height: 100%;
+}
+
+.main_spinner {
+  font-size: 3rem;
+  margin-top: 15%;
+  color: #5072A7;
 }
 
 .range {
@@ -49,7 +55,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 4vh;
   margin-top: 2rem;
 }
 
@@ -205,10 +211,6 @@ input::-webkit-inner-spin-button {
   padding: 0.2rem 0.5rem;
 }
 
-.wordContainer input::placeholder {
-  font-size: 0.68rem;
-}
-
 .word_controls {
   display: flex;
   justify-content: space-between;
@@ -226,10 +228,13 @@ input::-webkit-inner-spin-button {
   border-radius: 5px;
   background-color: #5072A7;
   color: white;
+  height: 1.6rem;
+  font-size: 1rem;
 }
 
 .resetContainer span {
-  padding: 0.2rem 0.5rem;
+  padding: 0 0.5rem;
+  font-size: 1rem;
 }
 
 .arrowUp {
@@ -246,7 +251,9 @@ input::-webkit-inner-spin-button {
   display: grid;
   place-items: center;
   min-width: 4rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
+  height: 1.6rem;
+  font-size: 0.85rem;
 }
 
 .fa-check {
@@ -291,7 +298,8 @@ i {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  /*gap: 1rem;*/
+  gap: 2vh;
 }
 
 .tone_s_container {
@@ -393,7 +401,7 @@ i {
   width: 40%;
   height: 70%;
   min-width: 300px;
-  min-height: 600px;
+  min-height: 450px;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -412,6 +420,14 @@ i {
   font-size: 2rem;
   color: #5072A7;
   
+}
+
+.modal_translations_container {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 88%;
 }
 
 .modal_char {
@@ -527,23 +543,25 @@ i {
 
 @media screen and (max-width: 500px) {
   .navbar a {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   .App {
-    gap: 1.3rem;
+    gap: 1.1rem;
   }
   .modal_char {
     font-size: 1.8rem;
   }
-  
   .modal_pinyin {
     font-size: 1.3rem;
   }
 }
 
 @media screen and (max-height: 800px) {
+  .navbar {
+    margin-top: 0.9rem;
+  }
   .main, .range {
-    gap: 1rem;
+    gap: max(3vh, 0.8rem);
   }
   .range button {
     font-size: 0.9rem;
@@ -568,7 +586,13 @@ i {
     font-size: 0.9rem;
   }
   .settingsContainer {
-    margin-top: 2rem;
+    margin-top: max(5vh, 1.5rem);
+  }
+  .resetContainer ul {
+    top: calc(10% + 7px);
+  }
+  .resetContainer ul li {
+    font-size: 0.8rem;
   }
 }
 

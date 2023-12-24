@@ -377,7 +377,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
   
   return (
     <div className="main">
-      {currentROF.length !== 0 &&
+      {currentROF.length !== 0 ?
         <>
           <div className="range">
             <button data-disabled={confirmRangeActive ? "false" : "true"} onClick={(() => { setConfirmRange(prev => prev + 1); setCurrentROF(reverseHanzi ? reverseArray(chars).slice(lowerRange - 1, upperRange < lowerRange ? lowerRange : upperRange) : randomizeHanzi ? randomizeArray(chars).slice(lowerRange - 1, upperRange < lowerRange ? lowerRange : upperRange) : chars.slice(lowerRange - 1, upperRange < lowerRange ? lowerRange : upperRange)); setUpperRange(prev => prev < lowerRange ? lowerRange : prev); setDisplayedUpperRange(prev => upperRange < lowerRange ? "" + lowerRange : prev); setLowerRangeForCt(lowerRange); setUpperRangeForCt(upperRange < lowerRange ? lowerRange : upperRange); setCharNumber(1) })}>Apply range</button>
@@ -421,7 +421,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
                 </div>
                 <svg onClick={() => setWordInfoModal(true)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path fill="#5072A7" d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 25 11 A 3 3 0 0 0 22 14 A 3 3 0 0 0 25 17 A 3 3 0 0 0 28 14 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 z" /></svg>
               </div>
-              <input type="text" onChange={answerHandler} onKeyDown={handleSearch} value={answer} className={`${wrongAnswer ? "shaking_inp" : ""}`} onAnimationEnd={() => setWrongAnswer(false)} placeholder="Check or search for Hanzi by pressing Enter" />
+              <input type="text" onChange={answerHandler} onKeyDown={handleSearch} value={answer} className={`${wrongAnswer ? "shaking_inp" : ""}`} onAnimationEnd={() => setWrongAnswer(false)} placeholder='Write your answer...'/>
               <div className="word_controls">
                 <div className="resetContainer" style={{ opacity: wordNumber > 1 || increment > 0 ? "1" : "0.5", pointerEvents: wordNumber > 1 || increment > 0 ? "auto" : "none" }}>
                   <span onClick={() => { setDropdownVisible(prev => !prev) }}>Reset</span>
@@ -440,11 +440,11 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
               </div>
             </> : <i className="fas fa-spinner fa-spin"></i>}
         </div>
-        </>}
+        </> : <i className="fas fa-spinner fa-spin main_spinner"></i>}
       {words.length !== 0 &&
         <div className="settingsContainer">
           <div className="tone_s_container">
-            <div>
+            <div style={{fontWeight: "500"}}>
               Tone sensitivity
             </div>
             <div className="switchContainer" onClick={() => setToneSensitivity(prev => !prev)}>
@@ -452,7 +452,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
             </div>
           </div>
           <div className="reverseContainer">
-            <div>Reverse</div>
+            <div style={{fontWeight: "500"}}>Reverse</div>
             <div className="reverseOptions">
               <div style={{ opacity: !reverse ? "1" : "0.5", pointerEvents: !reverse ? "none" : "auto" }} onClick={() => { setReverseHanzi(false); setReverseWords(false); setCharNumber(1); setWordNumber(1) }} >
                 Off
@@ -466,7 +466,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
             </div>
           </div>
           <div className="randomizeContainer">
-            <div>Randomize</div>
+            <div style={{fontWeight: "500"}}>Randomize</div>
             <div className="randomizeOptions">
               <div style={{ opacity: !randomize ? "1" : "0.5", pointerEvents: !randomize ? "none" : "auto" }} onClick={() => { setRandomizeHanzi(false); setRandomizeWords(false); setCharNumber(1); setWordNumber(1) }}>
                 Off
@@ -483,7 +483,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
       {currentROF.length !== 0 && words.length !== 0 && 
         <InfoModal open={hanziInfoModal || wordInfoModal || wordListModal} close={() => handleCloseModal()} closeAnimation={modalExitAnim}>
           {hanziInfoModal ?
-            <>
+            <div className="modal_translations_container">
               <div className="modal_char">{currentROF[charNumber - 1]["simplified"]}</div>
               <div className="modal_pinyin">{pinyinConverter(currentROF[charNumber - 1]["pinyin"])}</div>
               <div className="modal_rank">Rank: {findRankOfChar(currentROF[charNumber - 1]["simplified"])}</div>
@@ -492,8 +492,8 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
                   <li key={i}>{translation}</li>
                 ))}
               </ol>
-              </> : wordInfoModal ? 
-            <>
+              </div> : wordInfoModal ? 
+            <div className="modal_translations_container">
               <div className="modal_char">{words.slice(increment, 5 + increment)[wordNumber - 1]["simplified"]}</div>
               <div className="modal_pinyin">{pinyinProcessor(pinyinConverter(words.slice(increment, 5 + increment)[wordNumber - 1]["pinyin"]))}</div>
               <ol className="modal_translations_list">
@@ -501,7 +501,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
                   <li key={i}>{translation}</li>
                 ))}
               </ol>
-            </> : 
+            </div> : 
             <>
             <div className="modal_all_words_container">
                 {words.map((w, i) => (
