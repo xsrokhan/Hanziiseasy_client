@@ -16,7 +16,7 @@ const Info = () => {
           be written simply as <b>shide</b>. If a vowel has an umlaut, as in the word <b>nǚ</b>, a colon needs to be put before the number like so: <b>nu:3</b>
         </p>
         <p>Words are given in batches of 5. Most surnames, names of brands and other proper nouns have been removed from the dictionary, since common nouns are more useful.</p>
-        <p>You can also search for characters to practice by typing the character in the answer box and pressing Enter. Happy learning!</p>
+        <p>You can also search for characters to practice by typing the character in the answer box and pressing <b>Enter</b>. Happy learning!</p>
       </div>
     </div>
   )
