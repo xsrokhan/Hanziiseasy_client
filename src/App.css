@@ -144,7 +144,9 @@ input::-webkit-inner-spin-button {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 220px; 
+  width: 230px;
+  padding: 0 12px;
+  box-sizing: border-box;
 }
 
 .charContainer .char > .pinyin_translation > svg {
@@ -191,6 +193,8 @@ input::-webkit-inner-spin-button {
   white-space: nowrap;
   overflow: hidden;
   width: 220px;
+  padding: 0 12px;
+  box-sizing: border-box;
 }
 
 .wordContainer .word_translation > svg {

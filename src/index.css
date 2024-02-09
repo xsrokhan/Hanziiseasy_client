@@ -10,14 +10,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  flex-direction: column;
   min-width: 280px;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 #root {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-image: url("./landscape_bg.jpg");
   background-repeat: no-repeat;
