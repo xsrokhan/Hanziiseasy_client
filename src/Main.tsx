@@ -101,6 +101,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
     } else {
       setReverse(true)
     }
+    setDropdownVisible(false)
   }, [randomizeHanzi, randomizeWords, reverseHanzi, reverseWords])
 
   function createWordListModalTrState(arg: number) {
