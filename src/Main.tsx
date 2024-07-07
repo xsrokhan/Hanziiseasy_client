@@ -83,7 +83,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
   }, [lowerRange, upperRange])
   
   useEffect(() => {
-    setCurrentROF(reverseHanzi ? reverseArray(chars).slice(lowerRange - 1, upperRange) : randomizeHanzi ? randomizeArray(chars).slice(lowerRange - 1, upperRange) : chars.slice(lowerRange - 1, upperRange))
+    setCurrentROF(reverseHanzi ? reverseArray(chars.slice(lowerRange - 1, upperRange)) : randomizeHanzi ? randomizeArray(chars.slice(lowerRange - 1, upperRange)) : chars.slice(lowerRange - 1, upperRange))
   }, [chars, reverseHanzi, randomizeHanzi])
 
   useEffect(() => {
