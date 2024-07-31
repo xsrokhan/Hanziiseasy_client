@@ -440,7 +440,7 @@ const Main = (props: {chars: Array<CharacterAndWord>}) => {
                 </div>
                 <button onClick={answerChecker}>{rightAnswer ? <i className="fa-solid fa-check"></i> : "Check"}</button>
                 {wordNumber < 5 ?
-                  <button style={{ opacity: increment + wordNumber >= words.length ? "0.5" : "1", pointerEvents: increment + wordNumber > words.length ? "none" : "auto" }} onClick={(() => { setWordNumber(prev => prev + 1); setWordCt(prev => prev + 1); setRightAnswer(false); setAnswer("") })}>{rightAnswer ? "Next" : "Skip"}</button> :
+                  <button style={{ opacity: increment + wordNumber >= words.length ? "0.5" : "1", pointerEvents: increment + wordNumber >= words.length ? "none" : "auto" }} onClick={(() => { setWordNumber(prev => prev + 1); setWordCt(prev => prev + 1); setRightAnswer(false); setAnswer("") })}>{rightAnswer ? "Next" : "Skip"}</button> :
                   <button style={{ opacity: words.slice(increment + 5, increment + 10).length ? "1" : "0.5", pointerEvents: words.slice(increment + 5, increment + 10).length ? "auto" : "none" }} onClick={() => { setIncrement(prev => prev + 5); setWordNumber(1); setWordCt(prev => prev + 1); setRightAnswer(false); setAnswer("")}}>Next batch</button>}
               </div>
             </> : <i className="fas fa-spinner fa-spin"></i>}
